@@ -1,0 +1,22 @@
+services:
+  mongo:
+    image: mongo:6
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./src/seeds:/docker-entrypoint-initdb.d:ro
+
+  mongo-express:
+    image: mongo-express:latest
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_PORT: 27017
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:

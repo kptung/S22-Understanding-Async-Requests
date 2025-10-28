@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <%- include('../includes/errorMessage.ejs') %>
+        <%- include('../includes/infoMessage.ejs') %>
+        <form class="product-form" action="/admin/add-product" method="POST" enctype="multipart/form-data">
+            <%- include("../includes/form-input.ejs", {
+                id: "title",
+                label: "Title",
+                type: "text",
+                errorMessage: errorMessage ?? [],
+                oldInput: oldInput ?? {}
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "imageUrl",
+                label: "Image File",
+                type: "file",
+                errorMessage: errorMessage ?? [],
+                oldInput: undefined,
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "price",
+                label: "Price",
+                type: "number",
+                errorMessage: errorMessage ?? [],
+                oldInput: oldInput ?? {},
+                step: "0.01"
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "description",
+                label: "Description",
+                type: "textarea",
+                errorMessage: errorMessage ?? [],
+                oldInput: oldInput ?? {},
+                rows: "5"
+            }) %>
+            <button class="btn" type="submit">Add Product</button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

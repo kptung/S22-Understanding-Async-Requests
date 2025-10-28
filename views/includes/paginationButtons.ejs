@@ -1,0 +1,32 @@
+<section class="pagination">
+  <% if (paginationData.hasPreviousPage) { %> <% if (paginationData.currentPage
+  !== 2) { %>
+  <a
+    href="?page=1"
+    class="<%= paginationData.currentPage === 1 ? 'active' : '' %>"
+    >1</a
+  >
+  <% } %>
+  <a
+    href="?page=<%= paginationData.previousPage %>"
+    class="<%= paginationData.currentPage === paginationData.previousPage ? 'active' : '' %>"
+    ><%= paginationData.previousPage %></a
+  >
+  <% } %>
+  <a href="?page=<%= paginationData.currentPage %>" class="active"
+    ><%= paginationData.currentPage %></a
+  >
+  <% if (paginationData.hasNextPage) { %>
+  <a
+    href="?page=<%= paginationData.nextPage %>"
+    class="<%= paginationData.currentPage === paginationData.nextPage ? 'active' : '' %>"
+    ><%= paginationData.nextPage %></a
+  >
+  <% if (paginationData.lastPage !== paginationData.nextPage) { %>
+  <a
+    href="?page=<%= paginationData.lastPage %>"
+    class="<%= paginationData.currentPage === paginationData.lastPage ? 'active' : '' %>"
+    ><%= paginationData.lastPage %></a
+  >
+  <% } %> <% } %>
+</section>

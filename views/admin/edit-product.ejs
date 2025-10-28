@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <%- include('../includes/errorMessage.ejs') %>
+        <%- include('../includes/infoMessage.ejs') %>
+        <form class="product-form" action="/admin/<% if (editing) { %>edit-product<% } else { %>add-product<% } %>" method="POST" enctype="multipart/form-data">
+            <%- include("../includes/form-input.ejs", {
+                id: "title",
+                label: "Title",
+                type: "text",
+                errorMessage: errorMessage ?? [],
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "imageUrl",
+                label: "Image File",
+                type: "file",
+                errorMessage: errorMessage ?? [],
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "price",
+                label: "Price",
+                type: "number",
+                errorMessage: errorMessage ?? [],
+                step: "0.01"
+            }) %>
+            <%- include("../includes/form-input.ejs", {
+                id: "description",
+                label: "Description",
+                type: "textarea",
+                errorMessage: errorMessage ?? [],
+                rows: "5"
+            }) %>
+            <button class="btn" type="submit"><% if (editing) { %>Update Product <% } else { %>Add Product <% } %></button>
+            <% if (editing) { %>
+              <input type="hidden" name="productId" value="<%= productId %>">
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <input type="hidden" name="existingImageUrl" value="<%= oldInput?.imageUrl || "" %>">
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,19 @@
+<div class="form-control">
+  <label for="<%= id %>"><%= label %></label>
+  <% if (type === "textarea") { %>
+  <textarea <% } else { %>
+    <input
+    type="<%= type %>"
+    <% } %>
+
+    name="<%= id %>"
+    id="<%= id %>"
+    class="<%= errorMessage.find(error => id === "password" ? (error.cause === id || error.cause === "confirmPassword") : error.cause === id) ? 'invalid' : '' %>"
+    <% if (typeof step !== 'undefined') { %> step="<%= step %>" <% } %>
+    <% if (typeof rows !== 'undefined') { %> rows="<%= rows %>" <% } %>
+
+    <% if (type === "textarea") { %>
+      > <%= (oldInput && oldInput[id]) ?? '' %></textarea
+  >
+  <% } else { %> value="<%= (oldInput && oldInput[id]) ?? '' %>"/> <% } %>
+</div>

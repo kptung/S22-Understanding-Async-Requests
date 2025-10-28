@@ -1,0 +1,7 @@
+<% if(infoMessage && infoMessage.length > 0) { %>
+<div class="user-message user-message--info">
+  <% infoMessage.forEach(info => { %>
+  <p><%= info.message %></p>
+  <% }); %>
+</div>
+<% } %>
