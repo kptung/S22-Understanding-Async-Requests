@@ -1,12 +1,22 @@
-# Node.js Course - S21 Adding Pagination
+# Node.js Course - S22 Understanding Async Requests
 
-Practice code for Section 21 - Adding Pagination, part of the course "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)" by Academind, Maximilian Schwarzmüller.
+Practice code for Section 22 - Understanding Async Requests, part of the course "NodeJS - The Complete Guide (MVC, REST APIs, GraphQL, Deno)" by Academind, Maximilian Schwarzmüller.
 
 This project covers:
-- Implementing server-side pagination without external packages
-- Reading the page value from query parameter
-- Using MongoDB `.skip()` and `.limit()` to fetch the current page slice
-- Rendering pagination links in views
+- Understanding asynchronous HTTP requests and how client-side JavaScript can communicate with a backend using `fetch()` and `res.json()`
+- Recognizing when to use async requests _(e.g. deleting or updating resources dynamically without re-rendering page)_ versus traditional page reloads
+- **Planning the transition toward **REST API** architecture:**
+  - Future REST endpoints (`GET`, `POST`, `PATCH`, `DELETE`) will return JSON instead of rendered views  
+  - MVC routes will remain temporarily for backward compatibility
+  - Business logic will be refactored into shared model/service functions, reused by both MVC and REST routes
+    
+- **Understanding the long-term migration path:**
+  - Maintain current MVC routes for stability
+  - Add new `/api/...` REST endpoints returning JSON
+  - Gradually update the frontend to use async `fetch()` requests
+  - Remove legacy MVC routes once the full REST API is in place
+
+> **Note:** The async request pattern _(e.g. deleting products via `fetch()` and dynamically updating the DOM)_ will be implemented and demonstrated in later course sections dedicated to **REST APIs**.
 
 # Project type
 - Independently implemented while following a Node.js course, writing all functionalities from scratch and extending the project with personal improvements.
@@ -31,8 +41,8 @@ This project covers:
 
 ## 1) Clone the repo
 ```bash
-git clone https://github.com/S21-Adding-Pagination
-cd ./S21-Adding-Pagination
+git clone https://github.com/S22-Understanding-Async-Requests
+cd ./S22-Understanding-Async-Requests
 ```
 
 ---
@@ -185,6 +195,7 @@ npm run db:test
 - If port 3000 is already in use, change the `SERVER_PORT` value in `.env`
 - Recommended and essential environment variable settings are described in `.env.example`
 - Email functionality will not work out of the box. To enable email sending, you need to create your own SendGrid account and provide an API key + Sender Email in your `.env`
+- The async request pattern _(e.g. deleting products via `fetch()` and dynamically updating the DOM)_ will be implemented and demonstrated in later course sections dedicated to **REST APIs**.
 
 ---
 
