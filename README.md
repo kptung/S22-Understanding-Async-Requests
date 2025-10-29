@@ -9,7 +9,6 @@ This project covers:
   - Future REST endpoints (`GET`, `POST`, `PATCH`, `DELETE`) will return JSON instead of rendered views  
   - MVC routes will remain temporarily for backward compatibility
   - Business logic will be refactored into shared model/service functions, reused by both MVC and REST routes
-    
 - **Understanding the long-term migration path:**
   - Maintain current MVC routes for stability
   - Add new `/api/...` REST endpoints returning JSON
